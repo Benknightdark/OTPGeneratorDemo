@@ -101,7 +101,7 @@ namespace OTPGenerator
         {
             double totalMilliseconds = DateTime.Now.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
 
-            double epoch = totalMilliseconds / 1000.0;
+            double epoch = totalMilliseconds ;/// 1000.0
             String epochHex = Dec2Hex(Math.Floor(epoch / 30), 20).PadLeft(16, '0');
             
             HMACSHA1 hmac = new HMACSHA1();

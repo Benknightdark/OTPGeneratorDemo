@@ -6,20 +6,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using DemoWebSIte.Models;
-
+using OTPGenerator;
 namespace DemoWebSIte.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private OTPCodeGeneratorService _otpService;
+        public HomeController(ILogger<HomeController> logger,OTPCodeGeneratorService otpService)
         {
             _logger = logger;
+            _otpService=otpService;
         }
 
         public IActionResult Index()
         {
+            ViewBag.code=_otpService.getGACode();
+ 
             return View();
         }
 
