@@ -3,11 +3,21 @@ using System.Security.Cryptography;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Extensions.Configuration;
+
 namespace OTPGenerator
 {
- public   class Utilities
+ public   class CodeGeneratorService
     {
-        public static String Dec2Hex(double value, int maxDecimals)
+         private string key;
+        private IConfiguration _config;
+        public CodeGeneratorService(IConfiguration config,string KeyParameter)
+        {
+           
+            _config = config;
+            key = _config[KeyParameter];
+        }
+        private  String Dec2Hex(double value, int maxDecimals)
         {
             string result = string.Empty;
             if (value < 0)
@@ -40,7 +50,7 @@ namespace OTPGenerator
             return result;
         }
 
-        public static String Base32ToDec(String base32)
+        private  String Base32ToDec(String base32)
         {
             String base32chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
             String bits = "";
@@ -62,7 +72,7 @@ namespace OTPGenerator
             return hex;
         }
 
-        public static byte[] HexToByte(string hexString)
+        private  byte[] HexToByte(string hexString)
         {
             byte[] byteOUT = new byte[hexString.Length / 2];
             for (int i = 0; i < hexString.Length; i = i + 2)
@@ -72,7 +82,7 @@ namespace OTPGenerator
             return byteOUT;
         }
 
-        public static string ByteToString(byte[] buff)
+        private  string ByteToString(byte[] buff)
         {
             string sbinary = "";
 
@@ -83,28 +93,28 @@ namespace OTPGenerator
             return (sbinary);
         }
 
-        public static int Hex2Dec(String s)
+        private  int Hex2Dec(String s)
         {
             return Convert.ToInt32(s, 16);
         }
- public  static String getGACode()
+        public   String getGACode()
         {
             double totalMilliseconds = DateTime.Now.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
 
             double epoch = totalMilliseconds / 1000.0;
-            String epochHex = Utilities.Dec2Hex(Math.Floor(epoch / 30), 20).PadLeft(16, '0');
+            String epochHex = Dec2Hex(Math.Floor(epoch / 30), 20).PadLeft(16, '0');
             
             HMACSHA1 hmac = new HMACSHA1();
 
-            String hexKey = Utilities.Base32ToDec("SDFEDS6P&&&&&E46G5HJ2"); //這邊的字串須提供金鑰
-            hmac.Key = Utilities.HexToByte(hexKey);
+            String hexKey = Base32ToDec(key); //這邊的字串須提供金鑰#"SDFEDS6P&&&&&E46G5HJ2"
+            hmac.Key = HexToByte(hexKey);
 
-            byte[] resultArray = hmac.ComputeHash(Utilities.HexToByte(epochHex));
-            String resultText = Utilities.ByteToString(resultArray);
+            byte[] resultArray = hmac.ComputeHash(HexToByte(epochHex));
+            String resultText = ByteToString(resultArray);
 
-            int offset = Convert.ToInt32(Utilities.Hex2Dec(resultText.Substring(resultText.Length - 1)));
+            int offset = Convert.ToInt32(Hex2Dec(resultText.Substring(resultText.Length - 1)));
             
-            String otp = (Utilities.Hex2Dec(resultText.Substring(offset * 2, 8)) & Utilities.Hex2Dec("7fffffff")).ToString();
+            String otp = (Hex2Dec(resultText.Substring(offset * 2, 8)) & Hex2Dec("7fffffff")).ToString();
             otp = (otp).Substring(otp.Length - 6, 6);
 
             return otp;
