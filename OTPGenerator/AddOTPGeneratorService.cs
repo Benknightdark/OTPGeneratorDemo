@@ -3,11 +3,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace OTPGenerator
 {
-    public static class OTPGeneratorServiceCollection
+    public static class AddOTPGeneratorService
     {
         public static void AddService(this IServiceCollection services,IConfiguration Configuration, string KeyName)
         {
-            services.AddScoped<CodeGeneratorService>(s => new CodeGeneratorService(Configuration, KeyName));
+            services.AddScoped<OTPCodeGeneratorService>(s => new OTPCodeGeneratorService(Configuration, KeyName));
                  
         }
     }

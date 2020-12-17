@@ -2,6 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+     <PackageId>OTPGenerator</PackageId>
+    <Version>0.0.0.0</Version>
+    <Authors>Ben</Authors>
+    <Company>Ben</Company>
+    <Description>test</Description>
+    <PackageProjectUrl>test</PackageProjectUrl>
+    <RepositoryUrl>test</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <FileVersion>0.0.0.0</FileVersion>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+    <PackageReleaseNotes>
+    test
+    </PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

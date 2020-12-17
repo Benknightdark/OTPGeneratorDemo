@@ -7,11 +7,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace OTPGenerator
 {
- public   class CodeGeneratorService
+ public   class OTPCodeGeneratorService
     {
          private string key;
         private IConfiguration _config;
-        public CodeGeneratorService(IConfiguration config,string KeyParameter)
+        public OTPCodeGeneratorService(IConfiguration config,string KeyParameter)
         {
            
             _config = config;
