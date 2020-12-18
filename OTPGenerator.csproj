@@ -3,17 +3,17 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
      <PackageId>OTPGenerator</PackageId>
-    <Version>0.0.0.0</Version>
+    <Version>0.0.0.1</Version>
     <Authors>Ben</Authors>
     <Company>Ben</Company>
-    <Description>test</Description>
-    <PackageProjectUrl>test</PackageProjectUrl>
-    <RepositoryUrl>test</RepositoryUrl>
+    <Description> .net5 OTP Code Generator </Description>
+    <PackageProjectUrl>https://github.com/Benknightdark/OTPGeneratorDemo</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Benknightdark/OTPGeneratorDemo</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
-    <FileVersion>0.0.0.0</FileVersion>
-    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+    <FileVersion>0.0.0.1</FileVersion>
+    <AssemblyVersion>0.0.0.1</AssemblyVersion>
     <PackageReleaseNotes>
-    test
+    .net5 OTP Code Generator 
     </PackageReleaseNotes>
   </PropertyGroup>
 

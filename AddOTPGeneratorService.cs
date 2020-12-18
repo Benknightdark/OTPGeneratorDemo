@@ -3,9 +3,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace OTPGenerator
 {
-    public static class AddOTPGeneratorService
+    public static class OTPGeneratorService
     {
-        public static void AddService(this IServiceCollection services,IConfiguration Configuration, string KeyName)
+        public static void AddOTPGeneratorService(this IServiceCollection services,IConfiguration Configuration, string KeyName)
         {
             services.AddScoped<OTPCodeGeneratorService>(s => new OTPCodeGeneratorService(Configuration, KeyName));
                  
